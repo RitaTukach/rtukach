@@ -2,16 +2,17 @@ package HomeWork;
 
 public class Task2 {
     public static void main(String[] args) {
-        int[] array = {0, 1, 1, 2, 3, 5, 8, 13, 21};
-        int n = 7;
-        int counter = 0;
-        int sum = 0;
-        while (counter < n) {
-            if (array[counter] % 2 == 0) {
-                sum = sum + array[counter];
+        int n = Integer.parseInt(args[0]);
+        int[] array = new int[n];
+        array[0] = 0;
+        array[1] = 1;
+        int res = 0;
+        for (int i = 2; i < n; ++i) {
+            array[i] = array[i - 1] + array[i - 2];
+            if (array[i] % 2 == 0) {
+                res = array[i] + res;
             }
-            counter++;
         }
-            System.out.println(sum);
+        System.out.println(res);
     }
 }
