@@ -1,6 +1,5 @@
 package Homework2;
 
-//Task2
 public class BoxTask2 {
     private int length;
     private int width;

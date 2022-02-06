@@ -1,6 +1,5 @@
 package Homework2;
 
-//Task1
 public enum Months {
         JANUARY("January", 1),
         FEBRUARY("February", 2),
@@ -46,5 +45,4 @@ public enum Months {
         }
         return 0;
     }
-
 }

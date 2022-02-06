@@ -1,5 +1,4 @@
 package Homework2;
-
 import static Homework2.Months.getMonthByNumber;
 import static Homework2.Months.getNumberByName;
 
