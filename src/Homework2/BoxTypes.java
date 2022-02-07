@@ -6,25 +6,13 @@ public enum BoxTypes {
     ENVELOPE("It is an envelope"),
     ;
     private final String name;
-    private int length;
-    private int width;
-    private int height;
 
     BoxTypes(String name) {
         this.name = name;
     }
-    public int getLength() {
-        return length;
+    public String getName() {
+        return name;
     }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
     public static String identifyBoxType(int length, int width, int height) {
         if (height == length && width == height && width > 0) {
             return CUBE.name;
