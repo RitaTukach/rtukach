@@ -12,7 +12,6 @@ public enum BoxTypes {
 
     BoxTypes(String name) {
         this.name = name;
-
     }
     public int getLength() {
         return length;
