@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class Task9 {
     public void printIndex(String text, String word) {
-        Pattern pattern = Pattern.compile(word, Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile(("\\b" + word + "\\b"), Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(text);
         if (matcher.find()) {
             int start = matcher.start();
