@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class Task8 {
     public void checkCardPattern(String cardPattern){
     Pattern pattern = Pattern.compile(cardPattern);
-    String text = "My credit card number is 8444-4444-4444-4448";
+    String text = "My credit card number is 8444-4444-4444-44484";
     Matcher matcher = pattern.matcher(text);
         if(matcher.find()){
         System.out.println("Credit card number found is: " + matcher.group(0));
