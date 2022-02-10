@@ -34,9 +34,9 @@ public class StoreAndCountFiveNumbers {
             }
         }
         if (array.size() >= numberOfStoredDigits) {
-            result = (double) sum / numberOfStoredDigits;
+            result = (double)sum / numberOfStoredDigits;
         } else {
-            result = (double) sum / array.size();
+            result = (double)sum / array.size();
         }
         return result;
     }
