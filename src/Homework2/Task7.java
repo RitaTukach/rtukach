@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class Task7 {
     public void findWordsWithA(String text) {
-        Pattern pattern = Pattern.compile("\\b([аА]\\S*[аА])\\b");
+        Pattern pattern = Pattern.compile("\\b([аА]\\S*[аА]|[аА]/?)\\b");
         Matcher matcher = pattern.matcher(text);
         while (matcher.find()) {
             int start = matcher.start();
@@ -15,7 +15,7 @@ public class Task7 {
     }
 
     public static void main(String[] args) {
-        final String text = "Роман, Антон, Анна, астана.";
+        final String text = "Роман, а, Антон, Анна, астана.";
         Task7 task7 = new Task7();
         task7.findWordsWithA(text);
     }
