@@ -23,18 +23,15 @@ public class BoxTypeVersion2 {
 
     BoxTypeVersion2(int length) {
         this.length = length;
-        System.out.println(identifyBoxType());
     }
     BoxTypeVersion2(int length, int width) {
         this.width = width;
         this.length = length;
-        System.out.println(identifyBoxType());
     }
     BoxTypeVersion2(int length, int width, int height) {
         this.width = width;
         this.length = length;
         this.height = height;
-        System.out.println(identifyBoxType());
     }
 
     public String getBox() {
@@ -70,6 +67,9 @@ public class BoxTypeVersion2 {
         BoxTypeVersion2 boxTypes1 = new BoxTypeVersion2(0);
         BoxTypeVersion2 boxTypes2 = new BoxTypeVersion2(5, 0);
         BoxTypeVersion2 boxTypes3 = new BoxTypeVersion2(10, 7, 0);
+        System.out.println(boxTypes1.identifyBoxType());
+        System.out.println(boxTypes2.identifyBoxType());
+        System.out.println(boxTypes3.identifyBoxType());
     }
 }
 
