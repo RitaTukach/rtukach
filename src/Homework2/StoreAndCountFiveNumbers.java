@@ -20,9 +20,9 @@ public class StoreAndCountFiveNumbers {
         array.add(number);
     }
 
-    public int countAverageSum() {
+    public Double countAverageSum() {
         int sum =  0;
-        int result;
+        double result;
         if (array.size() > numberOfStoredDigits) {
             Collections.reverse(array);
             for (int i = 0; i < numberOfStoredDigits; i++) {
@@ -34,9 +34,9 @@ public class StoreAndCountFiveNumbers {
             }
         }
         if (array.size() >= numberOfStoredDigits) {
-            result = sum / numberOfStoredDigits;
+            result = (double) sum / numberOfStoredDigits;
         } else {
-            result = sum / array.size();
+            result = (double) sum / array.size();
         }
         return result;
     }

@@ -5,20 +5,19 @@ import java.util.regex.Pattern;
 
 public class Task7 {
     public void findWordsWithA(String text) {
-        String[] words = text.split(" ");
-        Pattern pattern = Pattern.compile("\\b(^[аА].*[аА](?=\\W|$)\\b)");
-        String result = "No result";
-        for (String word : words) {
-            Matcher matcher = pattern.matcher(word);
-            while (matcher.find()) {
-                result = word;
-                System.out.println(word);
-            }
+        Pattern pattern = Pattern.compile("\\b([аА]\\S*[аА])\\b");
+        Matcher matcher = pattern.matcher(text);
+        while (matcher.find()) {
+            int start = matcher.start();
+            int end = matcher.end();
+            System.out.println(text.substring(start, end));
         }
     }
+
     public static void main(String[] args) {
-        String text = "Антон анна текст какой-то анапа.";
+        final String text = "Роман, Антон, Анна, астана.";
         Task7 task7 = new Task7();
         task7.findWordsWithA(text);
     }
 }
+
