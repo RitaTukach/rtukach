@@ -83,22 +83,30 @@ public class AutoFactory implements Service{
            car = searchForMostSuitableFactoryCar(color, wheelSize);
             if (car == null) {
                 car = listOfFactoryCandidateCars.get(0);
-                listOfFactoryCars.remove(listOfFactoryCandidateCars.get(0));
+                removeCarFromStorage(car);
                 car.setColor(color);
                 car.setWheelSize(wheelSize);
             }
             else if (car.getColor().equals(color) && car.getWheelSize() == wheelSize) {
+                removeCarFromStorage(car);
                 return car;
             }
             else if (car.getWheelSize() != wheelSize) {
+                removeCarFromStorage(car);
                 car.setWheelSize(wheelSize);
             } else {
+                removeCarFromStorage(car);
                 car.setColor(color);
             }
         } else {
             car = new Car(color, model, year, wheelSize, engineVolume);
         }
         return car;
+    }
+
+    private HashSet<Car> removeCarFromStorage(Car car) {
+        listOfFactoryCars.remove(car);
+        return listOfFactoryCars;
     }
 
     @Override
