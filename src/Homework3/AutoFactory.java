@@ -1,45 +1,18 @@
 package Homework3;
 
 import java.util.*;
+import Homework3.Models;
+import Homework3.Colors;
 
 public class AutoFactory implements Service{
 
     private HashSet<Car> listOfFactoryCars = new LinkedHashSet<>();
     private ArrayList<Car> listOfFactoryCandidateCars = new ArrayList<>();
-
-    public enum Models {
-        MERCEDES,
-        OPEL,
-        BMW,
-        AUDI,
-        NISSAN
-        ;
-    }
     public static Double[] enginesVolumeList = {1.4, 1.6, 1.8, 2.0, 2.5, 3.0};
-
-    public enum Colors {
-        YELLOW("yellow"),
-        WHITE("white"),
-        BLACK("black"),
-        GRAY("gray"),
-        RED("red")
-        ;
-        String colorName;
-        Colors(String colorName){
-            this.colorName = colorName;
-        }
-    }
     public static int[] wheelsSizeList = {14, 15, 16, 17, 18};
 
     public AutoFactory () {
        createAutofactoryCars();
-    }
-
-    public enum CarOptions {
-        BLUETOOTH,
-        CAMERA,
-        NO_OPTION,
-        ;
     }
 
     public void printFactoryCarParameters() {
@@ -50,9 +23,9 @@ public class AutoFactory implements Service{
     }
 
     private  void createAutofactoryCars() {
-        Car car1 = new Car(Colors.YELLOW, AutoFactory.Models.MERCEDES, 2020, 15, 2.5, CarOptions.BLUETOOTH);
-        Car car2 = new Car(Colors.WHITE, AutoFactory.Models.MERCEDES, 2021, 17, 2.5, CarOptions.CAMERA);
-        Car car3 = new Car(Colors.GRAY, AutoFactory.Models.MERCEDES, 2021, 16, 2.5, CarOptions.NO_OPTION);
+        Car car1 = new Car(Colors.YELLOW, Models.MERCEDES, 2020, 15, 2.5, CarOptions.BLUETOOTH);
+        Car car2 = new Car(Colors.WHITE, Models.MERCEDES, 2021, 17, 2.5, CarOptions.CAMERA);
+        Car car3 = new Car(Colors.GRAY, Models.MERCEDES, 2021, 16, 2.5, CarOptions.NO_OPTION);
         Collections.addAll(listOfFactoryCars, car1, car2, car3);
     }
 

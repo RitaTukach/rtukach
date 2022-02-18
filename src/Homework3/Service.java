@@ -2,9 +2,9 @@ package Homework3;
 
 public interface Service {
 
-    void setColor(Car car, AutoFactory.Colors color);
+    void setColor(Car car, Colors color);
 
     void setWheelSize(Car car, int wheelSize);
 
-    void setCarOptions(Car car, AutoFactory.CarOptions carOptions);
+    void setCarOptions(Car car, CarOptions carOptions);
 }

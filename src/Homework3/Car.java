@@ -1,15 +1,15 @@
 package Homework3;
 
 public class Car {
-    private AutoFactory.Colors color;
-    private final AutoFactory.Models model;
+    private Colors color;
+    private final Models model;
     private final int year;
     private int wheelSize;
     private final double engineVolume;
-    private AutoFactory.CarOptions carOptions;
+    private CarOptions carOptions;
 
-    public Car(AutoFactory.Colors color, AutoFactory.Models model, int year, int wheelSize, double engineVolume,
-               AutoFactory.CarOptions carOptions) {
+    public Car(Colors color, Models model, int year, int wheelSize, double engineVolume,
+               CarOptions carOptions) {
         this.color = color;
         this.model = model;
         this.year = year;
@@ -18,11 +18,11 @@ public class Car {
         this.carOptions = carOptions;
     }
 
-    public AutoFactory.Colors getColor() {
+    public Colors getColor() {
         return color;
     }
 
-    public AutoFactory.Models getModel() {
+    public Models getModel() {
         return model;
     }
 
@@ -38,7 +38,7 @@ public class Car {
         return engineVolume;
     }
 
-    public AutoFactory.CarOptions getCarOptions() {
+    public CarOptions getCarOptions() {
         return carOptions;
     }
 
@@ -58,7 +58,7 @@ public class Car {
         System.out.println(this.toString());
     }
 
-    public void setColor(AutoFactory.Colors color) {
+    public void setColor(Colors color) {
         this.color = color;
     }
 
@@ -66,7 +66,7 @@ public class Car {
         this.wheelSize = wheelSize;
     }
 
-    public void setCarOptions(AutoFactory.CarOptions carOptions) {
+    public void setCarOptions(CarOptions carOptions) {
         this.carOptions = carOptions;
     }
 }
