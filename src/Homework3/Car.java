@@ -1,21 +1,32 @@
 package Homework3;
 
+import java.util.HashSet;
+
 public class Car {
     private Colors color;
     private final Models model;
     private final int year;
     private int wheelSize;
     private final double engineVolume;
-    private CarOptions carOptions;
+    //private CarOptions carOptions;
+    private HashSet<CarOptions> carOptionsList;
 
     public Car(Colors color, Models model, int year, int wheelSize, double engineVolume,
-               CarOptions carOptions) {
+               HashSet<CarOptions> carOptionsList) {
         this.color = color;
         this.model = model;
         this.year = year;
         this.wheelSize = wheelSize;
         this.engineVolume = engineVolume;
-        this.carOptions = carOptions;
+        this.carOptionsList = carOptionsList;
+    }
+
+    public HashSet<CarOptions> getCarOptionsList() {
+        return carOptionsList;
+    }
+
+    public void setCarOptionsList(HashSet<CarOptions> carOptionsList) {
+        this.carOptionsList = carOptionsList;
     }
 
     public Colors getColor() {
@@ -38,10 +49,6 @@ public class Car {
         return engineVolume;
     }
 
-    public CarOptions getCarOptions() {
-        return carOptions;
-    }
-
     @Override
     public String toString() {
         return "Car{" +
@@ -50,7 +57,7 @@ public class Car {
                 ", year=" + year +
                 ", wheelSize=" + wheelSize +
                 ", engineVolume=" + engineVolume +
-                ", CarOptions=" + carOptions +
+                ", CarOptions=" + carOptionsList +
                 '}';
     }
 
@@ -64,10 +71,6 @@ public class Car {
 
     public void setWheelSize(int wheelSize) {
         this.wheelSize = wheelSize;
-    }
-
-    public void setCarOptions(CarOptions carOptions) {
-        this.carOptions = carOptions;
     }
 }
 

@@ -3,7 +3,7 @@ package Homework3;
 public enum CarOptions {
     BLUETOOTH("Bluetooth"),
     CAMERA("Camera"),
-    NO_OPTION("No options"),
+    WHEEL_HEATING("Wheel heating"),
     ;
 
     private final String option;
