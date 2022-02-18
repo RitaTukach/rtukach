@@ -24,8 +24,8 @@ public class AutoFactory implements Service{
         HashSet<CarOptions> carOptionsList = new HashSet<>();
         Collections.addAll(carOptionsList, CarOptions.BLUETOOTH, CarOptions.CAMERA, CarOptions.WHEEL_HEATING);
         Car car1 = new Car(Colors.YELLOW, Models.MERCEDES, 2020, 15, 2.5, carOptionsList);
-        Car car2 = new Car(Colors.WHITE, Models.MERCEDES, 2021, 17, 2.5, carOptionsList);
-        Car car3 = new Car(Colors.GRAY, Models.MERCEDES, 2021, 16, 2.5, carOptionsList);
+        Car car2 = new Car(Colors.WHITE, Models.MERCEDES, 2021, 184, 2.5, new HashSet<>(Set.of(CarOptions.BLUETOOTH, CarOptions.WHEEL_HEATING)));
+        Car car3 = new Car(Colors.GRAY, Models.MERCEDES, 2021, 16, 2.5, new HashSet<>(Set.of(CarOptions.BLUETOOTH)));
         Collections.addAll(listOfFactoryCars, car1, car2, car3);
     }
 
