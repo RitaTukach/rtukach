@@ -1,12 +1,10 @@
 package Homework3;
 
-import java.util.List;
-
 public interface Service {
 
-    void setColor(AutoFactory.Colors color);
+    void setColor(Car car, AutoFactory.Colors color);
 
-    public void setWheelSize(int wheelSize);
+    void setWheelSize(Car car, int wheelSize);
 
-    void setList(List<String> list);
+    void setCarOptions(Car car, AutoFactory.CarOptions carOptions);
 }

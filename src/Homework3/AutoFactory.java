@@ -4,8 +4,8 @@ import java.util.*;
 
 public class AutoFactory implements Service{
 
-    HashSet<Car> listOfFactoryCars = new LinkedHashSet<>();
-    ArrayList<Car> listOfFactoryCandidateCars = new ArrayList<>();
+    private HashSet<Car> listOfFactoryCars = new LinkedHashSet<>();
+    private ArrayList<Car> listOfFactoryCandidateCars = new ArrayList<>();
 
     public enum Models {
         MERCEDES,
@@ -35,6 +35,13 @@ public class AutoFactory implements Service{
        createAutofactoryCars();
     }
 
+    public enum CarOptions {
+        BLUETOOTH,
+        CAMERA,
+        NO_OPTION,
+        ;
+    }
+
     public void printFactoryCarParameters() {
         System.out.println("Factory models: " + Arrays.toString(Models.values()));
         System.out.println("Factory engine volumes: " + Arrays.toString(enginesVolumeList));
@@ -43,66 +50,85 @@ public class AutoFactory implements Service{
     }
 
     private  void createAutofactoryCars() {
-        Car car1 = new Car(Colors.YELLOW, AutoFactory.Models.MERCEDES, 2020, 14, 2.5);
-        Car car2 = new Car(Colors.WHITE, AutoFactory.Models.MERCEDES, 2021, 18, 2.5);
-        Car car3 = new Car(Colors.GRAY, AutoFactory.Models.MERCEDES, 2021, 12, 2.5);
+        Car car1 = new Car(Colors.YELLOW, AutoFactory.Models.MERCEDES, 2020, 15, 2.5, CarOptions.BLUETOOTH);
+        Car car2 = new Car(Colors.WHITE, AutoFactory.Models.MERCEDES, 2021, 17, 2.5, CarOptions.CAMERA);
+        Car car3 = new Car(Colors.GRAY, AutoFactory.Models.MERCEDES, 2021, 16, 2.5, CarOptions.NO_OPTION);
         Collections.addAll(listOfFactoryCars, car1, car2, car3);
     }
 
     private ArrayList<Car> checkUnchangeableParameters(Models model, int year, double engineVolume) {
         for (Car autofactoryCar : listOfFactoryCars) {
-            if (autofactoryCar.getModel().equals(model) && autofactoryCar.getYear() == year && autofactoryCar.getEngineVolume() == engineVolume) {
+            if (autofactoryCar.getModel().equals(model) && autofactoryCar.getYear() == year &&
+                    autofactoryCar.getEngineVolume() == engineVolume) {
                 listOfFactoryCandidateCars.add(autofactoryCar);
             }
         }
         return listOfFactoryCandidateCars;
     }
 
-    private Car searchForMostSuitableFactoryCar(Colors color, int wheelSize) {
+    private Car searchForMostSuitableFactoryCar(Colors color, int wheelSize, CarOptions carOptions) {
         Car car = null;
         for (Car autofactoryCar :  listOfFactoryCandidateCars) {
-            if (autofactoryCar.getColor().equals(color) && autofactoryCar.getWheelSize() == wheelSize) {
+            if (autofactoryCar.getColor().equals(color) && autofactoryCar.getWheelSize() == wheelSize &&
+                    autofactoryCar.getCarOptions().equals(carOptions)) {
                 car = autofactoryCar;
                 listOfFactoryCars.remove(autofactoryCar);
                 return car;
             }
         }
         for (Car autofactoryCar :  listOfFactoryCandidateCars) {
-            if (!(autofactoryCar.getColor().equals(color)) && autofactoryCar.getWheelSize() == wheelSize ||
-                    autofactoryCar.getColor().equals(color)  && autofactoryCar.getWheelSize() != wheelSize) {
+            if (!(autofactoryCar.getColor().equals(color)) && autofactoryCar.getWheelSize() == wheelSize &&
+                    autofactoryCar.getCarOptions().equals(carOptions) || autofactoryCar.getColor().equals(color)
+                    && autofactoryCar.getCarOptions().equals(carOptions) && autofactoryCar.getWheelSize() != wheelSize) {
+                car = autofactoryCar;
+            }
+            else if (!(autofactoryCar.getColor().equals(color)) && autofactoryCar.getWheelSize() == wheelSize &&
+                    !(autofactoryCar.getCarOptions().equals(carOptions)) || autofactoryCar.getColor().equals(color) &&
+                    autofactoryCar.getWheelSize() != wheelSize && autofactoryCar.getCarOptions().equals(carOptions)) {
+                car = autofactoryCar;
+            }
+            else if (autofactoryCar.getColor().equals(color) && autofactoryCar.getWheelSize() != wheelSize &&
+                    !(autofactoryCar.getCarOptions().equals(carOptions)) || !(autofactoryCar.getColor().equals(color)) &&
+                    autofactoryCar.getWheelSize() != wheelSize && autofactoryCar.getCarOptions().equals(carOptions)) {
                 car = autofactoryCar;
             }
         }
         return car;
     }
 
-    public Car createCar(Colors color, Models model, int year, int wheelSize, double engineVolume) {
+    public void setCarParameters(Car car, Colors color, int wheelSize, CarOptions carOptions) {
+        if (!(car.getColor().equals(color))) {
+            setColor(car, color);
+        }
+        if (car.getWheelSize() != wheelSize) {
+            setWheelSize(car, wheelSize);
+        }
+        if (!(car.getCarOptions().equals(carOptions))) {
+            setCarOptions(car, carOptions);
+        }
+    }
+
+    public Car createCar(Colors color, Models model, int year, int wheelSize, double engineVolume, CarOptions carOptions) {
         Car car = null;
         checkUnchangeableParameters(model, year, engineVolume);
         if (!(listOfFactoryCandidateCars.isEmpty())) {
-           car = searchForMostSuitableFactoryCar(color, wheelSize);
+            car = searchForMostSuitableFactoryCar(color, wheelSize, carOptions);
             if (car == null) {
                 car = listOfFactoryCandidateCars.get(0);
                 removeCarFromStorage(car);
-                car.setColor(color);
-                car.setWheelSize(wheelSize);
-            }
-            else if (car.getColor().equals(color) && car.getWheelSize() == wheelSize) {
-                removeCarFromStorage(car);
+                setColor(car, color);
+                setWheelSize(car, wheelSize);
+                setCarOptions(car, carOptions);
                 return car;
-            }
-            else if (car.getWheelSize() != wheelSize) {
-                removeCarFromStorage(car);
-                car.setWheelSize(wheelSize);
             } else {
                 removeCarFromStorage(car);
-                car.setColor(color);
+                setCarParameters(car, color, wheelSize, carOptions);
             }
-        } else {
-            car = new Car(color, model, year, wheelSize, engineVolume);
+        } else{
+                car = new Car(color, model, year, wheelSize, engineVolume, carOptions);
+            }
+            return car;
         }
-        return car;
-    }
 
     private HashSet<Car> removeCarFromStorage(Car car) {
         listOfFactoryCars.remove(car);
@@ -110,18 +136,17 @@ public class AutoFactory implements Service{
     }
 
     @Override
-    public void setColor(Colors color) {
-
+    public void setColor(Car car, Colors color) {
+        car.setColor(color);
     }
 
     @Override
-    public void setWheelSize(int wheelSize) {
-
+    public void setWheelSize(Car car, int wheelSize) {
+        car.setWheelSize(wheelSize);
     }
 
     @Override
-    public void setList(List<String> list) {
-
+    public void setCarOptions(Car car, CarOptions carOptions) {
+        car.setCarOptions(carOptions);
     }
-
 }
