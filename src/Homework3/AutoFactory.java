@@ -2,34 +2,39 @@ package Homework3;
 
 import java.util.*;
 
-public class AutoFactory implements Service{
+public class AutoFactory{
 
-    private HashSet<Car> listOfFactoryCars = new LinkedHashSet<>();
+    private final int year = 2021;
     private ArrayList<Car> listOfFactoryCandidateCars = new ArrayList<>();
-    public static Double[] enginesVolumeList = {1.4, 1.6, 1.8, 2.0, 2.5, 3.0};
-    public static int[] wheelsSizeList = {14, 15, 16, 17, 18};
+    private List<Models> modelsList = Arrays.asList(Models.values());
+    private List<Colors> colorsList = Arrays.asList(Colors.values());
+    private List<EngineVolumes> enginesVolumeList = Arrays.asList(EngineVolumes.values());;
+    private List<WheelSize> wheelsSizeList = Arrays.asList(WheelSize.values());
+    HashSet<CarOptions> carOptionsList = new HashSet<>(Set.of(CarOptions.values()));
+    private HashSet<Car> listOfFactoryCars  = new HashSet<>(Set.of());
 
     public AutoFactory () {
-       createAutofactoryCars();
+        Collections.addAll(carOptionsList, CarOptions.BLUETOOTH, CarOptions.CAMERA, CarOptions.WHEEL_HEATING);
+        printFactoryCarParameters();
+        createAutofactoryCars(listOfFactoryCars);
     }
 
     public void printFactoryCarParameters() {
-        System.out.println("Factory models: " + Arrays.toString(Models.values()));
-        System.out.println("Factory engine volumes: " + Arrays.toString(enginesVolumeList));
-        System.out.println("Factory colors: " + Arrays.toString(Colors.values()));
-        System.out.println("Factory wheels size: " + Arrays.toString(wheelsSizeList));
+        System.out.println("Factory models: " + modelsList);
+        System.out.println("Factory engine volumes: " + enginesVolumeList);
+        System.out.println("Factory colors: " + colorsList);
+        System.out.println("Factory wheels size: " + wheelsSizeList);
     }
 
-    private  void createAutofactoryCars() {
-        HashSet<CarOptions> carOptionsList = new HashSet<>();
-        Collections.addAll(carOptionsList, CarOptions.BLUETOOTH, CarOptions.CAMERA, CarOptions.WHEEL_HEATING);
-        Car car1 = new Car(Colors.YELLOW, Models.MERCEDES, 2020, 15, 2.5, carOptionsList);
-        Car car2 = new Car(Colors.WHITE, Models.MERCEDES, 2021, 184, 2.5, new HashSet<>(Set.of(CarOptions.BLUETOOTH, CarOptions.WHEEL_HEATING)));
-        Car car3 = new Car(Colors.GRAY, Models.MERCEDES, 2021, 16, 2.5, new HashSet<>(Set.of(CarOptions.BLUETOOTH)));
+    private  HashSet<Car> createAutofactoryCars(HashSet<Car> listOfFactoryCars) {
+        Car car1 = new Car(Colors.YELLOW, Models.MERCEDES, year, WheelSize.FIFTEEN, EngineVolumes.RACING, carOptionsList);
+        Car car2 = new Car(Colors.WHITE, Models.MERCEDES, year, WheelSize.FOURTEEN, EngineVolumes.REGULAR, new HashSet<>(Set.of(CarOptions.BLUETOOTH, CarOptions.WHEEL_HEATING)));
+        Car car3 = new Car(Colors.GRAY, Models.MERCEDES, year, WheelSize.SEVENTEEN, EngineVolumes.RACING, new HashSet<>(Set.of(CarOptions.BLUETOOTH)));
         Collections.addAll(listOfFactoryCars, car1, car2, car3);
+        return listOfFactoryCars;
     }
 
-    private ArrayList<Car> checkUnchangeableParameters(Models model, int year, double engineVolume) {
+    private ArrayList<Car> checkUnchangeableParameters(Models model, int year, EngineVolumes engineVolume) {
         for (Car autofactoryCar : listOfFactoryCars) {
             if (autofactoryCar.getModel().equals(model) && autofactoryCar.getYear() == year &&
                     autofactoryCar.getEngineVolume() == engineVolume) {
@@ -39,7 +44,7 @@ public class AutoFactory implements Service{
         return listOfFactoryCandidateCars;
     }
 
-    private Car searchForMostSuitableFactoryCar(Colors color, int wheelSize, HashSet<CarOptions> carOptionsList) {
+    private Car searchForMostSuitableFactoryCar(Colors color, WheelSize wheelSize, HashSet<CarOptions> carOptionsList) {
         Car car = null;
         for (Car autofactoryCar :  listOfFactoryCandidateCars) {
             if (autofactoryCar.getColor().equals(color) && autofactoryCar.getWheelSize() == wheelSize &&
@@ -69,7 +74,7 @@ public class AutoFactory implements Service{
         return car;
     }
 
-    public void setCarParameters(Car car, Colors color, int wheelSize, HashSet<CarOptions> carOptions) {
+    public void setCarParameters(Car car, Colors color, WheelSize wheelSize, HashSet<CarOptions> carOptions) {
         if (!(car.getColor().equals(color))) {
             setColor(car, color);
         }
@@ -81,8 +86,8 @@ public class AutoFactory implements Service{
         }
     }
 
-    public Car createCar(Colors color, Models model, int year, int wheelSize, double engineVolume, HashSet<CarOptions> carOptionsList) {
-        Car car = null;
+    public Car createCar(Colors color, Models model, int year, WheelSize wheelSize, EngineVolumes engineVolume, HashSet<CarOptions> carOptionsList) {
+       Car car = null;
         checkUnchangeableParameters(model, year, engineVolume);
         if (!(listOfFactoryCandidateCars.isEmpty())) {
             car = searchForMostSuitableFactoryCar(color, wheelSize, carOptionsList);
@@ -108,17 +113,31 @@ public class AutoFactory implements Service{
         return listOfFactoryCars;
     }
 
-    @Override
+    public void changeColor(Service service, Car car, Colors color) {
+        service.changeColor(car, color);
+    }
+
     public void setColor(Car car, Colors color) {
         car.setColor(color);
     }
 
-    @Override
-    public void setWheelSize(Car car, int wheelSize) {
+    public void changeWheelSize(Service service, Car car, WheelSize wheelSize) {
         car.setWheelSize(wheelSize);
     }
 
-    @Override
+    public void setWheelSize(Car car, WheelSize wheelSize) {
+        car.setWheelSize(wheelSize);
+
+    }
+
+    public void AddCarOptions(Service service, Car car, CarOptions carOption) {
+        service.addCarOptions(car, carOption);
+    }
+
+    public void removeCarOptions(Service service, Car car, CarOptions carOption) {
+        service.removeCarOptions(car, carOption);
+    }
+
     public void setCarOptions(Car car, HashSet<CarOptions> carOptionsList) {
         car.setCarOptionsList(carOptionsList);
     }

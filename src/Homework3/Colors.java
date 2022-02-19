@@ -9,7 +9,13 @@ public enum Colors {
     ;
     String colorName;
 
+    public String getColorName() {
+        return colorName;
+    }
+
     Colors(String colorName){
         this.colorName = colorName;
+
+
     }
 }

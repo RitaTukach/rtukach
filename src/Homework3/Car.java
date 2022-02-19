@@ -1,17 +1,29 @@
 package Homework3;
 
+import java.util.Collections;
 import java.util.HashSet;
 
 public class Car {
     private Colors color;
     private final Models model;
     private final int year;
-    private int wheelSize;
-    private final double engineVolume;
-    //private CarOptions carOptions;
+    private WheelSize wheelSize;
+    private final EngineVolumes engineVolume;
     private HashSet<CarOptions> carOptionsList;
 
-    public Car(Colors color, Models model, int year, int wheelSize, double engineVolume,
+    public Car(Colors color, Models model, int year, WheelSize wheelSize, EngineVolumes engineVolume) {
+        this.color = color;
+        this.model = model;
+        this.year = year;
+        this.wheelSize = wheelSize;
+        this.engineVolume = engineVolume;
+        Collections.addAll(carOptionsList, CarOptions.CAMERA, CarOptions.BLUETOOTH, CarOptions.WHEEL_HEATING);
+        if (carOptionsList == null) {
+            carOptionsList = null;
+        }
+    }
+
+    public Car(Colors color, Models model, int year, WheelSize wheelSize, EngineVolumes engineVolume,
                HashSet<CarOptions> carOptionsList) {
         this.color = color;
         this.model = model;
@@ -23,10 +35,6 @@ public class Car {
 
     public HashSet<CarOptions> getCarOptionsList() {
         return carOptionsList;
-    }
-
-    public void setCarOptionsList(HashSet<CarOptions> carOptionsList) {
-        this.carOptionsList = carOptionsList;
     }
 
     public Colors getColor() {
@@ -41,11 +49,11 @@ public class Car {
         return year;
     }
 
-    public int getWheelSize() {
+    public WheelSize getWheelSize() {
         return wheelSize;
     }
 
-    public double getEngineVolume() {
+    public EngineVolumes getEngineVolume() {
         return engineVolume;
     }
 
@@ -69,8 +77,30 @@ public class Car {
         this.color = color;
     }
 
-    public void setWheelSize(int wheelSize) {
+    public void setWheelSize(WheelSize wheelSize) {
         this.wheelSize = wheelSize;
+    }
+
+    public void setCarOptionsList(HashSet<CarOptions> carOptionsList) {
+        this.carOptionsList = carOptionsList;
+    }
+
+    public void addCarOptions(CarOptions carOption) {
+        if(carOptionsList != null) {
+            carOptionsList.add(carOption);
+        } else {
+            setCarOptionsList(new HashSet<>());
+            carOptionsList.add(carOption);
+        }
+    }
+
+    public HashSet<CarOptions> removeCarOptions(CarOptions carOption) {
+        if(carOptionsList == null) {
+            throw new NullPointerException("Cannot remove option from empty car options list");
+        } else {
+            carOptionsList.remove(carOption);
+        }
+        return carOptionsList;
     }
 }
 

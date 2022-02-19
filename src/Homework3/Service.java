@@ -1,12 +1,20 @@
 package Homework3;
 
-import java.util.HashSet;
+public class Service {
 
-public interface Service {
+    public void changeColor(Car car, Colors color) {
+        car.setColor(color);
+    }
 
-    void setColor(Car car, Colors color);
+    public void changeWheelSize(Car car, WheelSize wheelSize) {
+        car.setWheelSize(wheelSize);
+    }
 
-    void setWheelSize(Car car, int wheelSize);
+    public void addCarOptions(Car car, CarOptions carOption) {
+        car.addCarOptions(carOption);
+    }
 
-    void setCarOptions(Car car, HashSet<CarOptions> carOptionsList);
+    public void removeCarOptions(Car car, CarOptions carOption) {
+        car.removeCarOptions(carOption);
+    }
 }
