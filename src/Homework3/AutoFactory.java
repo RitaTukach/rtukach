@@ -30,11 +30,11 @@ public class AutoFactory{
     }
 
     private  HashSet<Car> createAutofactoryCars(HashSet<Car> listOfFactoryCars) {
-        Car car1 = new Car(Colors.YELLOW, Models.MERCEDES, year, WheelSize.FIFTEEN, EngineVolumes.RACING, carOptionsList);
+        Car car1 = new Car(Colors.YELLOW, Models.MERCEDES, year, WheelSize.FIFTEEN, EngineVolumes.RACING);
         Car car2 = new Car(Colors.WHITE, Models.MERCEDES, year, WheelSize.FOURTEEN, EngineVolumes.REGULAR,
                 new HashSet<>(Set.of(CarOptions.BLUETOOTH, CarOptions.WHEEL_HEATING)));
         Car car3 = new Car(Colors.GRAY, Models.MERCEDES, year, WheelSize.SEVENTEEN, EngineVolumes.RACING,
-                new HashSet<>(Set.of(CarOptions.BLUETOOTH)));
+                new HashSet<>(Set.of(CarOptions.CAMERA)));
         Collections.addAll(listOfFactoryCars, car1, car2, car3);
         return listOfFactoryCars;
     }
@@ -76,7 +76,7 @@ public class AutoFactory{
         Car car = null;
         for (Car autofactoryCar :  listOfFactoryCandidateCars) {
             if (autofactoryCar.getColor().equals(color) && autofactoryCar.getWheelSize() == wheelSize &&
-                    autofactoryCar.getCarOptionsList().equals(carOptionsList)) {
+                    autofactoryCar.getCarOptionsList().containsAll(carOptionsList)) {
                 car = autofactoryCar;
                 listOfFactoryCars.remove(autofactoryCar);
                 return car;
@@ -84,18 +84,18 @@ public class AutoFactory{
         }
         for (Car autofactoryCar :  listOfFactoryCandidateCars) {
             if (!(autofactoryCar.getColor().equals(color)) && autofactoryCar.getWheelSize() == wheelSize &&
-                    autofactoryCar.getCarOptionsList().equals(carOptionsList) || autofactoryCar.getColor().equals(color)
-                    && autofactoryCar.getCarOptionsList().equals(carOptionsList) && autofactoryCar.getWheelSize() != wheelSize) {
+                    autofactoryCar.getCarOptionsList().containsAll(carOptionsList) || autofactoryCar.getColor().equals(color)
+                    && autofactoryCar.getCarOptionsList().containsAll(carOptionsList) && autofactoryCar.getWheelSize() != wheelSize) {
                 car = autofactoryCar;
             }
             else if (!(autofactoryCar.getColor().equals(color)) && autofactoryCar.getWheelSize() == wheelSize &&
-                    !(autofactoryCar.getCarOptionsList().equals(carOptionsList)) || autofactoryCar.getColor().equals(color) &&
-                    autofactoryCar.getWheelSize() != wheelSize && autofactoryCar.getCarOptionsList().equals(carOptionsList)) {
+                    !(autofactoryCar.getCarOptionsList().containsAll(carOptionsList)) || autofactoryCar.getColor().equals(color) &&
+                    autofactoryCar.getWheelSize() != wheelSize && autofactoryCar.getCarOptionsList().containsAll(carOptionsList)) {
                 car = autofactoryCar;
             }
             else if (autofactoryCar.getColor().equals(color) && autofactoryCar.getWheelSize() != wheelSize &&
-                    !(autofactoryCar.getCarOptionsList().equals(carOptionsList)) || !(autofactoryCar.getColor().equals(color)) &&
-                    autofactoryCar.getWheelSize() != wheelSize && autofactoryCar.getCarOptionsList().equals(carOptionsList)) {
+                    !(autofactoryCar.getCarOptionsList().containsAll(carOptionsList)) || !(autofactoryCar.getColor().equals(color)) &&
+                    autofactoryCar.getWheelSize() != wheelSize && autofactoryCar.getCarOptionsList().containsAll(carOptionsList)) {
                 car = autofactoryCar;
             }
         }
@@ -109,7 +109,7 @@ public class AutoFactory{
         if (car.getWheelSize() != wheelSize) {
             setWheelSize(car, wheelSize);
         }
-        if (!(car.getCarOptionsList().equals(carOptions))) {
+        if (!(car.getCarOptionsList().containsAll(carOptions))) {
             setCarOptions(car, carOptions);
         }
     }
