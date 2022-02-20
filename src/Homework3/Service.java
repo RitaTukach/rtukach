@@ -2,6 +2,9 @@ package Homework3;
 
 public class Service {
 
+    public Service() {
+    }
+
     public void changeColor(Car car, Colors color) {
         car.setColor(color);
     }

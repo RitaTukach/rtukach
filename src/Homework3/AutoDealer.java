@@ -4,6 +4,14 @@ import java.util.HashSet;
 
 public class AutoDealer {
 
+    private final Service service;
+    private final AutoFactory autoFactory;
+
+    public AutoDealer(Service service, AutoFactory autoFactory) {
+        this.service = service;
+        this.autoFactory = autoFactory;
+    }
+
     public Car orderCar(AutoFactory autoFactory, Colors color, Models model, int year, WheelSize wheelSize, EngineVolumes engineVolume,
                         HashSet<CarOptions> carOptionsList) {
         autoFactory.createCar(color, model, year, wheelSize,  engineVolume, carOptionsList);

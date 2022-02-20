@@ -1,6 +1,5 @@
 package Homework3;
 
-import java.util.Collections;
 import java.util.HashSet;
 
 public class Car {
@@ -17,10 +16,7 @@ public class Car {
         this.year = year;
         this.wheelSize = wheelSize;
         this.engineVolume = engineVolume;
-        Collections.addAll(carOptionsList, CarOptions.CAMERA, CarOptions.BLUETOOTH, CarOptions.WHEEL_HEATING);
-        if (carOptionsList == null) {
-            carOptionsList = null;
-        }
+        this.carOptionsList = new HashSet<>();
     }
 
     public Car(Colors color, Models model, int year, WheelSize wheelSize, EngineVolumes engineVolume,
@@ -88,7 +84,8 @@ public class Car {
     public void addCarOptions(CarOptions carOption) {
         if(carOptionsList != null) {
             carOptionsList.add(carOption);
-        } else {
+        }
+        else {
             setCarOptionsList(new HashSet<>());
             carOptionsList.add(carOption);
         }
