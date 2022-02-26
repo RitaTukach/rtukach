@@ -15,11 +15,6 @@ public class AverageValueCounter {
 
         while ((line = br.readLine()) != null) {
         try {
-            try {
-                line = br.readLine();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
             if (line.trim().equalsIgnoreCase("STOP")) {
                 System.out.println(sum / counter);
                 break;
