@@ -8,7 +8,7 @@ public class AverageValueCounter {
 
     public static void main(String[] args) {
 
-        int sum = 0;
+        double sum = 0;
         int counter = 0;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String line = null;
