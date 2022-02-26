@@ -6,14 +6,14 @@ import java.io.InputStreamReader;
 
 public class AverageValueCounter {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         double sum = 0;
         int counter = 0;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String line = null;
+        String line;
 
-        while (true) {
+        while ((line = br.readLine()) != null) {
         try {
             try {
                 line = br.readLine();
@@ -27,11 +27,15 @@ public class AverageValueCounter {
             int number = Integer.parseInt(line);
             sum = sum + number;
             counter++;
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | ArithmeticException e) {
             e.printStackTrace();
-        } catch (ArithmeticException e) {
-            e.printStackTrace();
+            System.out.println(sum / counter);
         }
+        }
+        try {
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
