@@ -1,9 +1,11 @@
 package Homework5;
+import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MatricesMultiplier {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, InputMismatchException {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Количество строк первой матрицы");
@@ -17,6 +19,7 @@ public class MatricesMultiplier {
         int Maze1[][] = new int[m][k];
         int Maze2[][] = new int[n][k];
 
+        System.out.println("Значения матрицы 1");
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 Maze[i][j] = scanner.nextInt();
@@ -24,6 +27,7 @@ public class MatricesMultiplier {
             }
         }
 
+        System.out.println("Значения матрицы 2");
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < k; j++) {
                 Maze1[i][j] = scanner.nextInt();
