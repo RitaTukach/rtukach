@@ -23,7 +23,6 @@ public class MatricesMultiplier {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 Maze[i][j] = scanner.nextInt();
-
             }
         }
 
@@ -47,7 +46,6 @@ public class MatricesMultiplier {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < k; j++) {
                 System.out.print(Maze2[i][j] + " ");
-
             }
             System.out.println();
         }
