@@ -50,7 +50,7 @@ public class Country1 implements Runnable{
                     if (compareLists(robotParts, robotEnumList)) {
                         counter++;
                         System.out.println(counter);
-                        robotParts.removeAll(robotEnumList);
+                        robotParts.removeAll(List.of(Robot.values()));
                     }
                     Thread.sleep(500);
                     if (counter == 20) {
