@@ -1,14 +1,11 @@
 package Homework6;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Country1 implements Runnable{
 
     int counter = 0;
-    private Set<Robot> robotParts = new HashSet<>();
+    private List<Robot> robotParts = new ArrayList<>();
     private List<Robot> robotEnumList = new ArrayList<>();
     Factory factory;
     private static volatile boolean consumer = true;
@@ -35,19 +32,28 @@ public class Country1 implements Runnable{
         }
     }
 
+    public boolean compareLists(List<Robot> robotParts, List<Robot> robotEnumList){
+        for(int i = 0; i < robotEnumList.size(); i++){
+            if(robotEnumList.get(i) != robotParts.get(i)){
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void consume() throws InterruptedException {
             while (consumer) {
                 synchronized (factory.BUFFER) {
                     orderRobotParts(factory.producedPart);
                     System.out.println("Country1 consumed: " + factory.producedPart);
                     removeFromBuffer(factory.producedPart);
-                    if (robotParts.containsAll(robotEnumList)) {
+                    if (compareLists(robotParts, robotEnumList)) {
                         counter++;
                         System.out.println(counter);
                         robotParts.removeAll(robotEnumList);
                     }
                     Thread.sleep(500);
-                    if (counter == 5) {
+                    if (counter == 20) {
                         consumer = false;
                         System.out.println("Country1 has won");
                     }
