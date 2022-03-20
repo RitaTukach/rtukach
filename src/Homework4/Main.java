@@ -24,7 +24,7 @@ public class Main {
         RemoveCarOptionsService removeCarOptionsService = new RemoveCarOptionsService();
         AddCarOptionsService addCarOptionsService = new AddCarOptionsService();
         StorageImpl sportCarsStorage = new StorageImpl();
-        List<SportsCar> carsList = new ArrayList<>(sportCarsStorage.getSportCarsStorageList());
+        List<SportsCar> carsList = new ArrayList<>(sportCarsStorage.getCarsStorageList());
         StorageImpl<SportsCar> sportsCarStorage = new StorageImpl<>();
 
         SportsCarFactory sportsCarFactory = new SportsCarFactory(changeColorService, changeWheelsService,

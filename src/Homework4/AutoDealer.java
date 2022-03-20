@@ -24,13 +24,10 @@ public class AutoDealer<T> {
     private RemoveCarOptionsService removeCarOptionsService;
     private AddCarOptionsService addCarOptionsService;
     private final StorageImpl sportCarsStorage = new StorageImpl();
-    List<SportsCar> carsList = new ArrayList<>(sportCarsStorage.getSportCarsStorageList());;
-    private TruckCarFactory truckCarFactory = new TruckCarFactory(changeColorService, changeWheelsService,
-            removeCarOptionsService, addCarOptionsService);
-    private PassengerCarFactory passengerCarFactory = new PassengerCarFactory(changeColorService, changeWheelsService,
-            removeCarOptionsService, addCarOptionsService);;
-    private SportsCarFactory sportsCarFactory = new SportsCarFactory(changeColorService, changeWheelsService,
-            removeCarOptionsService, addCarOptionsService, sportCarsStorage);
+    List<SportsCar> carsList = new ArrayList<>(sportCarsStorage.getCarsStorageList());;
+    private TruckCarFactory truckCarFactory ;
+    private PassengerCarFactory passengerCarFactory;
+    private SportsCarFactory sportsCarFactory;
     private AutoFactory autoFactory;
     private RacingTypes racingTypes;
     private PassengerCarTypes passengerCarTypes;
