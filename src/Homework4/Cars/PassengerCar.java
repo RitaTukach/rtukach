@@ -2,6 +2,7 @@ package Homework4.Cars;
 
 import Homework4.Parameters.*;
 import java.util.HashSet;
+import java.util.Set;
 
 public class PassengerCar extends Car {
 
@@ -16,6 +17,11 @@ public class PassengerCar extends Car {
                         HashSet<CarOptions> carOptionsList, PassengerCarTypes type) {
         super(color, model, wheelSize, engineVolume);
         this.passengerCarTypes = type;
+        carOptionsList = new HashSet<>(Set.of(CarOptions.values()));
+
+        if (!carOptionsList.isEmpty()) {
+            setCarOptionsList(carOptionsList);
+        }
     }
 
     public PassengerCarTypes getType() {

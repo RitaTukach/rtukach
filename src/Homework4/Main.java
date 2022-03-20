@@ -1,6 +1,8 @@
 package Homework4;
 
 import Homework4.Cars.SportsCar;
+import Homework4.Cars.TruckCar;
+import Homework4.Cars.PassengerCar;
 import Homework4.Factories.PassengerCarFactory;
 import Homework4.Factories.SportsCarFactory;
 import Homework4.Factories.TruckCarFactory;
@@ -24,15 +26,13 @@ public class Main {
         RemoveCarOptionsService removeCarOptionsService = new RemoveCarOptionsService();
         AddCarOptionsService addCarOptionsService = new AddCarOptionsService();
         StorageImpl sportCarsStorage = new StorageImpl();
-        List<SportsCar> carsList = new ArrayList<>(sportCarsStorage.getCarsStorageList());
-        StorageImpl<SportsCar> sportsCarStorage = new StorageImpl<>();
 
         SportsCarFactory sportsCarFactory = new SportsCarFactory(changeColorService, changeWheelsService,
-                removeCarOptionsService,addCarOptionsService, sportCarsStorage);
+                removeCarOptionsService, addCarOptionsService, sportCarsStorage);
         TruckCarFactory truckCarFactory = new TruckCarFactory(changeColorService, changeWheelsService,
-                removeCarOptionsService,addCarOptionsService);
+                removeCarOptionsService, addCarOptionsService);
         PassengerCarFactory passengerCarFactory = new PassengerCarFactory(changeColorService, changeWheelsService,
-                removeCarOptionsService,addCarOptionsService);
+                removeCarOptionsService, addCarOptionsService);
 
         AutoDealer autoDealer = new AutoDealer(truckCarFactory, passengerCarFactory, sportsCarFactory,
                 changeColorService, changeWheelsService, removeCarOptionsService,
