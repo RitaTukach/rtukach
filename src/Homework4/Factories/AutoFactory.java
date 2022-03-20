@@ -1,12 +1,10 @@
 package Homework4.Factories;
-import Homework4.Cars.PassengerCar;
 import Homework4.Services.AddCarOptionsService;
 import Homework4.Cars.Car;
 import Homework4.Services.ChangeColorService;
 import Homework4.Services.ChangeWheelsService;
 import Homework4.Parameters.*;
 import Homework4.Services.RemoveCarOptionsService;
-
 import java.util.*;
 
 public abstract class AutoFactory<T> {
@@ -22,10 +20,12 @@ public abstract class AutoFactory<T> {
     private ChangeWheelsService changeWheelsService;
     private RemoveCarOptionsService removeCarOptionsService;
     private AddCarOptionsService addCarOptionsService;
-    private TruckCarFactory truckCarFactory;
     private RacingTypes racingTypes;
     private PassengerCarTypes passengerCarTypes;
+    private CargoTypes cargoTypes;
     private SportsCarFactory sportsCarFactory;
+    private PassengerCarFactory passengerCarFactory;
+    private TruckCarFactory truckCarFactory;
 
     public AutoFactory(ChangeColorService changeColorService, ChangeWheelsService changeWheelsService,
                        RemoveCarOptionsService removeCarOptionsService, AddCarOptionsService addCarOptionsService) {
@@ -48,7 +48,7 @@ public abstract class AutoFactory<T> {
         Car car = null;
         for (CargoTypes type: CargoTypes.values()) {
             if (ts[0].equals(type)) {
-                car = truckCarFactory.createCar(color, model, wheelSize, engineVolume, carOptionsList, ts);
+                car = truckCarFactory.createTruckCar(color, model, wheelSize, engineVolume, carOptionsList, cargoTypes);
             }
         }
         for (RacingTypes type: RacingTypes.values()) {
@@ -59,8 +59,8 @@ public abstract class AutoFactory<T> {
         }
         for (PassengerCarTypes type: PassengerCarTypes.values()) {
             if (ts[0].equals(type)) {
-                car = sportsCarFactory.createSportsCar(color, model, wheelSize, engineVolume, carOptionsList,
-                        racingTypes, passengerCarTypes);
+                car = passengerCarFactory.createPassengerCar(color, model, wheelSize, engineVolume, carOptionsList,
+                        passengerCarTypes);
             }
         }
         return car;

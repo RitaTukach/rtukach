@@ -50,7 +50,7 @@ public class PassengerCarFactory<T> extends AutoFactory<T> {
         return listOfFactoryCandidateCars;
     }
 
-    public PassengerCar createTruckCar(Colors color, Models model, WheelSize wheelSize, EngineVolumes engineVolume,
+    public PassengerCar createPassengerCar(Colors color, Models model, WheelSize wheelSize, EngineVolumes engineVolume,
                                    HashSet<CarOptions> carOptionsList, PassengerCarTypes passengerCarTypes) {
         PassengerCar car = null;
         if (!(passengerCarStorage.getCarsStorageList().size() == 0)) {

@@ -51,8 +51,7 @@ public class TruckCarFactory<T> extends AutoFactory<T>  {
     }
 
     public TruckCar createTruckCar(Colors color, Models model, WheelSize wheelSize, EngineVolumes engineVolume,
-                                     HashSet<CarOptions> carOptionsList, RacingTypes racingTypes,
-                                     CargoTypes cargoTypes) {
+                                     HashSet<CarOptions> carOptionsList, CargoTypes cargoTypes) {
         TruckCar car = null;
         if (!(truckCarStorage.getCarsStorageList().size() == 0)) {
             checkUnchangeableParameters(model, engineVolume);
