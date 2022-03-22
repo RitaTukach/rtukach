@@ -51,18 +51,21 @@ public class AutoDealer<T> {
         for (CargoTypes type: CargoTypes.values()) {
             if (ts[0].equals(type)) {
                 car = truckCarFactory.createCar(color, model, wheelSize, engineVolume, carOptionsList, ts);
+                return car;
             }
         }
         for (RacingTypes type: RacingTypes.values()) {
             if (ts[0].equals(type)) {
                 car = sportsCarFactory.createSportsCar(color, model, wheelSize, engineVolume, carOptionsList, racingTypes,
                          passengerCarTypes);
+                return car;
             }
         }
         for (PassengerCarTypes type: PassengerCarTypes.values()) {
             if (ts[0].equals(type)) {
                 car = passengerCarFactory.createPassengerCar(color, model, wheelSize, engineVolume, carOptionsList,
                         passengerCarTypes);
+                return car;
             }
         }
             return car;
