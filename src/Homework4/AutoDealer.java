@@ -61,7 +61,7 @@ public class AutoDealer<T> {
         }
         for (PassengerCarTypes type: PassengerCarTypes.values()) {
             if (ts[0].equals(type)) {
-                car = sportsCarFactory.createSportsCar(color, model, wheelSize, engineVolume, carOptionsList, racingTypes,
+                car = passengerCarFactory.createPassengerCar(color, model, wheelSize, engineVolume, carOptionsList,
                         passengerCarTypes);
             }
         }

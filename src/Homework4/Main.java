@@ -1,8 +1,5 @@
 package Homework4;
 
-import Homework4.Cars.SportsCar;
-import Homework4.Cars.TruckCar;
-import Homework4.Cars.PassengerCar;
 import Homework4.Factories.PassengerCarFactory;
 import Homework4.Factories.SportsCarFactory;
 import Homework4.Factories.TruckCarFactory;
